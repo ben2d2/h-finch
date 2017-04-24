@@ -1,7 +1,11 @@
 .jumbotron {
-  padding-top: 48px;
-  padding-bottom: 0;
+  padding-top: 60px;
+  padding-bottom: 15px;
   background-color: #000000;
+}
+
+.logo {
+  text-align: center;
 }
 
 .profile-img {
