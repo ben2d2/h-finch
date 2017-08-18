@@ -61,18 +61,7 @@
         Find out about upcoming shows and events!
       </p>
       <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <h4>August 4th at The Boro Bar & Grill</h4>
-            <p><small>1211 Greenland Dr</small></p>
-            <p><small>Murfreesboro, TN 37130</small></p>
-            <p>With Porcelain Hill from Ontario, CA</p>
-            <p><a href="http://theborobar.com/">The Boro Bar & Grill</a></p>
-            <p><a href="https://porcelainhill.bandcamp.com/">Porcelain Hill - Bandcamp</a></p>
-            <img src="images/august-4th.png" alt="" style="max-width: 100%">
-          </div>
-          <div class="col-md-4">
-          </div>
+        <div class="row" id="shows">
         </div>
       </div>
 
@@ -86,5 +75,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script>
+      $(document).ready(function(){
+        var url = "https://graph.facebook.com/v2.10/HarringtonFinch/events"
+        $.ajax({
+          type: "GET",
+          url: url,
+          data: {
+            access_token: "EAACEdEose0cBALyD2TAeEp6AbJpkThHT4SmPYBhTECfEbbMxGL6iQurE3UJlGgmGAqMHXLasZCcIxNhXzO33cNK2IUzkzgwK2luugttnOfpqWDM3vShPivWudLSmhML1zoxuVceWl5ScGawHDTpZCwicYbObRZAu1gOjZBySjqb423CgKpSwFAVtDf0i3EIZD",
+            time_filter: "upcoming"
+          },
+          cache: false,
+          success: function(data){
+            $.each(data.data, function(k, event) {
+              debugger
+              var startAt = moment(event.start_time).format('MMMM Do YYYY, h:mm');
+              $('#shows').append('<div class="col-md-4"><h4>' + event.name + '</h4><p>' + startAt + '</p><p class="small">' + event.place.name + '</p>' + '<p class="small">' + event.place.location.city + ',' + event.place.location.state +'</p><p>' + event.description + '</p></div>')
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
