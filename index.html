@@ -88,13 +88,13 @@
           type: "GET",
           url: url,
           data: {
-            access_token: "EAACEdEose0cBALyD2TAeEp6AbJpkThHT4SmPYBhTECfEbbMxGL6iQurE3UJlGgmGAqMHXLasZCcIxNhXzO33cNK2IUzkzgwK2luugttnOfpqWDM3vShPivWudLSmhML1zoxuVceWl5ScGawHDTpZCwicYbObRZAu1gOjZBySjqb423CgKpSwFAVtDf0i3EIZD",
+            access_token: "EAAY12H26SSUBAHhmJYpPRZCTPlwrw9MD0jjlpPbkeUy5huBj3FFTToZBniyQowZBFZBBQCqkb73jM0htiC79ZBoZC05qRzMgHxu1pC9dKSRLmZAM9tLuiYic9v9rxPHFXmcHqQWQZCETSy7G5Li0lWEajXETrXvo4KCSe0XZBJFbfmSgyEWeHT48eBrPqobqWeY8ZD",
             time_filter: "upcoming"
           },
           cache: false,
           success: function(data){
             var event = data.data[0];
-            var startAt = moment(event.start_time).format('MMMM Do YYYY, h:mm:ss a');
+            var startAt = moment(event.start_time).format('MMMM Do YYYY, h:mm');
             $('#upcoming').append("<h4>" + event.name + "</h4><p>" + startAt + "</p><p class='small'>" + event.place.name + "</p>" + "<p class='small'>" + event.place.location.city + "," + event.place.location.state +"</p>")
           }
         });
